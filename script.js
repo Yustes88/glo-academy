@@ -1,29 +1,35 @@
-const title = "Glo Academy";
-const screens = "Простые, Сложные, Интерактивные";
-const screenPrice = 1000;
+"use strict";
+
+// Lesson03
 const rollback = 28;
-const fullPrice = 1000000;
-const adaptive = true;
+const title = prompt("Как называется ваш проект?");
 
-alert("This is a first alert message");
-console.log("this is a first console text");
-
-console.log(
-  `Title type is ${typeof title}, full price type is ${typeof fullPrice}, adaptive type is ${typeof adaptive}`
+const screens = prompt(
+  "Какие типы экранов нужно разработать?",
+  "Простые, Сложные, Интерактивные"
 );
 
-console.log(screens.length);
+const screenPrice = +prompt("Сколько будет стоить данная работа?", 12000);
 
-// console.log("Стоимость вёрстки экранов " + screenPrice + " рублей/долларов/гривен/юани"); или
-console.log(
-  `Стоимость вёрстки экранов ${screenPrice} рублей/долларов/гривен/юани`
-);
+const adaptive = confirm("Нужен ли адаптив на сайте?");
 
-// console.log("Стоимость разработки сайт " + fullPrice + " рублей/долларов/гривен/юани"); или
-console.log(
-  `Стоимость разработки сайта ${fullPrice} рублей/долларов/гривен/юани`
-);
+const service1 = prompt("Какой дополнительный тип услуги нужен?");
+const servicePrice1 = +prompt("Сколько это будет стоить?");
+const service2 = prompt("Какой дополнительный тип услуги нужен?");
+const servicePrice2 = +prompt("Сколько это будет стоить?");
 
-console.log(screens.toLowerCase().split(" "));
+const fullPrice = screenPrice + servicePrice1 + servicePrice2;
 
-console.log(fullPrice * (rollback / 100) + "%");
+const servicePercentPrice = Math.ceil(fullPrice - fullPrice * (rollback / 100));
+
+console.log(servicePercentPrice);
+
+if (fullPrice > 30000) {
+  console.log("Даем скидку в 10%");
+} else if (fullPrice > 15000) {
+  console.log("Даем скидку в 5%");
+} else if (fullPrice <= 0) {
+  console.log("Что-то пошло не так");
+} else {
+  console.log("Скидка не предусмотрена");
+}
