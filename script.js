@@ -3,16 +3,12 @@
 // Lesson05
 const rollback = 28;
 
+let title;
 let screenPrice;
+let screens;
+let adaptive;
 let service1;
 let service2;
-
-const title = prompt("Как называется ваш проект?");
-const screens = prompt(
-  "Какие типы экранов нужно разработать?",
-  "Простые, Сложные, Интерактивные"
-);
-const adaptive = confirm("Нужен ли адаптив на сайте?");
 
 const isNumber = function (num) {
   return !isNaN(parseFloat(num)) && isFinite(num);
@@ -24,6 +20,16 @@ const askServicePrice = function () {
   } while (!isNumber(screenPrice));
 
   return screenPrice;
+};
+
+const asking = function () {
+  title = prompt("Как называется ваш проект?");
+  askServicePrice();
+  screens = prompt(
+    "Какие типы экранов нужно разработать?",
+    "Простые, Сложные, Интерактивные"
+  );
+  adaptive = confirm("Нужен ли адаптив на сайте?");
 };
 
 const getAllServicePrices = function () {
@@ -64,7 +70,7 @@ const getRollbackMessage = function (price) {
 };
 
 function getFullPrice(screenPrice, extraPriceAll) {
-  return screenPrice + extraPriceAll;
+  return Number(screenPrice) + extraPriceAll;
 }
 
 const getTitle = function (title) {
@@ -84,14 +90,23 @@ const getServicePercentPrices = function (fullPrice, rollback) {
   return Math.ceil(fullPrice - fullPrice * (rollback / 100));
 };
 
+asking();
+
+const projectTitle = getTitle(title);
 const allServicePrices = getAllServicePrices();
 const fullPrice = getFullPrice(screenPrice, allServicePrices);
 const servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
-
-// askServicePrice();
+const rollbackMessage = getRollbackMessage(fullPrice);
 
 console.log(showTypeOf(title));
 console.log(showTypeOf(adaptive));
-console.log(screens);
-console.log(getRollbackMessage(fullPrice));
-console.log(servicePercentPrice);
+
+console.log("Title:", projectTitle);
+console.log("Screens:", screens);
+console.log("Adaptive:", adaptive);
+console.log("Screen price:", screenPrice);
+console.log("Services price:", allServicePrices);
+console.log("Screen and services price together", fullPrice);
+
+console.log("Rollback message", rollbackMessage);
+console.log("Service percent price", servicePercentPrice);
