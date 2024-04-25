@@ -15,16 +15,18 @@ const isNumber = function (num) {
 };
 
 const askServicePrice = function () {
-  do {
-    screenPrice = prompt("Сколько будет стоить данная работа?");
-  } while (!isNumber(screenPrice));
+  let price;
 
-  return screenPrice;
+  do {
+    price = prompt("Сколько будет стоить данная работа?");
+  } while (!isNumber(price));
+
+  return +price;
 };
 
 const asking = function () {
   title = prompt("Как называется ваш проект?");
-  askServicePrice();
+  screenPrice = askServicePrice();
   screens = prompt(
     "Какие типы экранов нужно разработать?",
     "Простые, Сложные, Интерактивные"
@@ -106,7 +108,7 @@ console.log("Screens:", screens);
 console.log("Adaptive:", adaptive);
 console.log("Screen price:", screenPrice);
 console.log("Services price:", allServicePrices);
-console.log("Screen and services price together", fullPrice);
+console.log("Screen and services price together:", fullPrice);
 
-console.log("Rollback message", rollbackMessage);
-console.log("Service percent price", servicePercentPrice);
+console.log("Rollback message:", rollbackMessage);
+console.log("Service percent price:", servicePercentPrice);
