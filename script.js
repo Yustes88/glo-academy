@@ -3,15 +3,22 @@
 // Lesson05
 const rollback = 28;
 
-const title = prompt("Как называется ваш проект?");
-const screens = prompt(
-  "Какие типы экранов нужно разработать?",
-  "Простые, Сложные, Интерактивные"
-);
-const adaptive = confirm("Нужен ли адаптив на сайте?");
-
 const isNumber = function (num) {
   return !isNaN(parseFloat(num)) && isFinite(num);
+};
+
+const asking = function () {
+  let screens;
+  let adaptive;
+
+  screens = prompt(
+    "Какие типы экранов нужно разработать?",
+    "Простые, Сложные, Интерактивные"
+  );
+
+  adaptive = confirm("Нужен ли адаптив на сайте?");
+
+  return { screens, adaptive };
 };
 
 const askServicePrice = function () {
@@ -67,7 +74,13 @@ function getFullPrice(screenPrice, extraPriceAll) {
   return Number(screenPrice) + extraPriceAll;
 }
 
-const getTitle = function (title) {
+const getTitle = function () {
+  let title;
+
+  do {
+    title = prompt("Как называется ваш проект?").trim();
+  } while (!title);
+
   return title
     .trim()
     .split("")
@@ -84,14 +97,15 @@ const getServicePercentPrices = function (fullPrice, rollback) {
   return Math.ceil(fullPrice - fullPrice * (rollback / 100));
 };
 
-const projectTitle = getTitle(title);
+const projectTitle = getTitle();
+const { screens, adaptive } = asking();
 const screenPrice = askServicePrice();
 const allServicePrices = getAllServicePrices();
 const fullPrice = getFullPrice(screenPrice, allServicePrices);
 const servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
 const rollbackMessage = getRollbackMessage(fullPrice);
 
-console.log(showTypeOf(title));
+console.log(showTypeOf(projectTitle));
 console.log(showTypeOf(adaptive));
 
 console.log("Title:", projectTitle);
