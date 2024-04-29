@@ -55,9 +55,10 @@ const appData = {
     )
   },
   addPrices: function () {
-    for (let screen of appData.screens) {
-      appData.screenPrice += +screen.price
-    }
+    const result = appData.screens.reduce((total, screen1) => {
+      return total + +screen1.price
+    }, 0)
+    appData.screenPrice = result
 
     for (let key in appData.services) {
       appData.allServicePrices += appData.services[key]
@@ -108,7 +109,7 @@ const appData = {
         price = prompt('Сколько это будет стоить?')
       } while (!appData.isNumber(price))
 
-      appData.services[name] = +price
+      appData.services[`${name}${i}`] = +price
     }
 
     appData.adaptive = confirm('Нужен ли адаптив на сайте?')
