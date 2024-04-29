@@ -19,8 +19,9 @@ const appData = {
     let title
 
     do {
-      title = prompt('Как называется ваш проект?').trim()
-    } while (!title)
+      title = prompt('Как называется ваш проект?')
+      console.log(title, typeof title)
+    } while (!title || appData.isNumber(title))
 
     appData.title = title
       .trim()
@@ -82,8 +83,12 @@ const appData = {
     appData.getTitle()
 
     for (let i = 0; i < 2; i++) {
-      let name = prompt('Какие типы экранов нужно разработать?')
+      let name
       let price = 0
+
+      do {
+        name = prompt('Какие типы экранов нужно разработать?')
+      } while (!name || appData.isNumber(name))
 
       do {
         price = prompt('Сколько будет стоить данная работа?')
@@ -93,8 +98,12 @@ const appData = {
     }
 
     for (let i = 0; i < 2; i++) {
-      let name = prompt('Какой дополнительный тип услуги нужен?')
+      let name
       let price = 0
+
+      do {
+        name = prompt('Какой дополнительный тип услуги нужен?')
+      } while (!name || appData.isNumber(name))
 
       do {
         price = prompt('Сколько это будет стоить?')
