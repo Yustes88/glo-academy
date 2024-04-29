@@ -47,17 +47,15 @@ const appData = {
     appData.fullPrice = Number(appData.screenPrice) + appData.allServicePrices
   },
   getAllServicePrices: function () {
-    let service1
-    let service2
     let totalSum = 0
 
     for (let i = 0; i < 2; i++) {
       let serviceSum
 
       if (i === 0) {
-        service1 = prompt('Какой дополнительный тип услуги нужен?')
+        appData.service1 = prompt('Какой дополнительный тип услуги нужен?')
       } else if (i === 1) {
-        service2 = prompt('Какой дополнительный тип услуги нужен?')
+        appData.service2 = prompt('Какой дополнительный тип услуги нужен?')
       }
 
       do {
@@ -69,15 +67,17 @@ const appData = {
     appData.allServicePrices = totalSum
   },
   getRollbackMessage: function () {
+    let message = ''
     if (appData.fullPrice > 30000) {
-      return 'Даем скидку в 10%'
+      message = 'Даем скидку в 10%'
     } else if (appData.fullPrice > 15000) {
-      return 'Даем скидку в 5%'
+      message = 'Даем скидку в 5%'
     } else if (appData.fullPrice <= 0) {
-      return 'Что-то пошло не так'
+      message = 'Что-то пошло не так'
     } else {
-      return 'Скидка не предусмотрена'
+      message = 'Скидка не предусмотрена'
     }
+    appData.rollbackMessage = message
   },
   getServicePercentPrices: function () {
     appData.servicePercentPrice = Math.ceil(
@@ -114,7 +114,7 @@ const appData = {
     appData.getAllServicePrices()
     appData.getFullPrice()
     appData.getServicePercentPrices()
-    appData.rollbackMessage = appData.getRollbackMessage()
+    appData.getRollbackMessage()
 
     appData.logger()
   },
