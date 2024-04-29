@@ -20,7 +20,7 @@ const appData = {
     let title
 
     do {
-      title = prompt('Как называется ваш проект?').trim()
+      title = prompt('Как называется ваш проект?')
     } while (!title)
 
     appData.title = title
