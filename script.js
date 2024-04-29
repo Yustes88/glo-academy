@@ -20,7 +20,6 @@ const appData = {
 
     do {
       title = prompt('Как называется ваш проект?')
-      console.log(title, typeof title)
     } while (!title || appData.isNumber(title))
 
     appData.title = title
