@@ -1,128 +1,39 @@
 'use strict'
-// Lesson08
+// Lesson09
+const mainTitle = document.getElementsByTagName('h1')[0]
 
-const appData = {
-  title: '',
-  screenPrice: 0,
-  screens: [],
-  adaptive: true,
-  rollback: 10,
-  fullPrice: 0,
-  servicePercentPrice: 0,
-  services: {},
-  allServicePrices: 0,
-  rollbackMessage: '',
-  isNumber: function (num) {
-    return !isNaN(parseFloat(num)) && isFinite(num)
-  },
-  getTitle: function () {
-    let title
+const startBtn = document.getElementsByClassName('handler_btn')[0]
+const resetBtn = document.getElementsByClassName('handler_btn')[1]
+const screenBtn = document.querySelector('.screen-btn')
 
-    do {
-      title = prompt('Как называется ваш проект?')
-    } while (!title || appData.isNumber(title))
+const itemsPercent = document.querySelectorAll('.other-items.percent')
+const itemsNumber = document.querySelectorAll('.other-items.number')
 
-    appData.title = title
-      .trim()
-      .split('')
-      .map((letter, index) => {
-        if (index === 0) {
-          return letter.toUpperCase()
-        }
-        return letter.toLowerCase()
-      })
-      .join('')
-  },
-  getFullPrice: function () {
-    appData.fullPrice = Number(appData.screenPrice) + appData.allServicePrices
-  },
-  getRollbackMessage: function () {
-    let message = ''
-    if (appData.fullPrice > 30000) {
-      message = 'Даем скидку в 10%'
-    } else if (appData.fullPrice > 15000) {
-      message = 'Даем скидку в 5%'
-    } else if (appData.fullPrice <= 0) {
-      message = 'Что-то пошло не так'
-    } else {
-      message = 'Скидка не предусмотрена'
-    }
-    appData.rollbackMessage = message
-  },
-  getServicePercentPrices: function () {
-    appData.servicePercentPrice = Math.ceil(
-      appData.fullPrice - appData.fullPrice * (appData.rollback / 100),
-    )
-  },
-  addPrices: function () {
-    const result = appData.screens.reduce((total, screen1) => {
-      return total + +screen1.price
-    }, 0)
-    appData.screenPrice = result
+const inputRange = document.querySelector('.rollback input[type="range"]')
 
-    for (let key in appData.services) {
-      appData.allServicePrices += appData.services[key]
-    }
-  },
-  logger: function () {
-    console.log('Title:', appData.title)
-    console.log('Screens:', appData.screens)
-    console.log('Adaptive:', appData.adaptive)
-    console.log('Screen price:', appData.screenPrice)
-    console.log('Services price:', appData.allServicePrices)
-    console.log('Screen and services price together:', appData.fullPrice)
+const rangeValue = document.querySelector('.rollback span')
 
-    console.log('Rollback message:', appData.rollbackMessage)
-    console.log('Service percent price:', appData.servicePercentPrice)
+const totalInput = document.getElementsByClassName('total-input')
 
-    for (let key in appData) {
-      console.log(`${key}: ${appData[key]}`)
-    }
-  },
-  asking: function () {
-    appData.getTitle()
+let screenBlocks = document.querySelectorAll('.screen')
 
-    for (let i = 0; i < 2; i++) {
-      let name
-      let price = 0
-
-      do {
-        name = prompt('Какие типы экранов нужно разработать?')
-      } while (!name || appData.isNumber(name))
-
-      do {
-        price = prompt('Сколько будет стоить данная работа?')
-      } while (!appData.isNumber(price))
-
-      appData.screens.push({id: i, name: name, price: price})
-    }
-
-    for (let i = 0; i < 2; i++) {
-      let name
-      let price = 0
-
-      do {
-        name = prompt('Какой дополнительный тип услуги нужен?')
-      } while (!name || appData.isNumber(name))
-
-      do {
-        price = prompt('Сколько это будет стоить?')
-      } while (!appData.isNumber(price))
-
-      appData.services[`${name}${i}`] = +price
-    }
-
-    appData.adaptive = confirm('Нужен ли адаптив на сайте?')
-  },
-  start: function () {
-    appData.asking()
-    appData.addPrices()
-    appData.getFullPrice()
-    appData.getServicePercentPrices()
-    appData.getRollbackMessage()
-
-    appData.logger()
-  },
+const displayInputs = function (list) {
+  for (let i = 0; i < list.length; i++) {
+    console.log(list[i])
+  }
 }
 
-appData.start()
+displayInputs(totalInput)
+
+console.log(
+  mainTitle,
+  startBtn,
+  resetBtn,
+  screenBtn,
+  itemsPercent,
+  itemsNumber,
+  inputRange,
+  rangeValue,
+  totalInput,
+  screenBlocks,
+)
