@@ -52,8 +52,15 @@ const orderFifthBooksChapter = function () {
   chapterThree.after(chapterFour);
   chapterTwo.before(chapterOne);
   chapterB.before(chapterA);
+};
 
-  console.log(bookChapters);
+const addChapter = function () {
+  const bookChapters = sixthBookElement.querySelectorAll("ul > li");
+  const chapterSeven = bookChapters[8];
+  const chapterEight = document.createElement("li");
+  chapterEight.textContent = "Глава 8: За пределами ES6";
+
+  chapterSeven.after(chapterEight);
 };
 
 orderBooksList();
@@ -61,3 +68,4 @@ fixTitleName();
 removeAd();
 orderSecondBooksChapters();
 orderFifthBooksChapter();
+addChapter();
