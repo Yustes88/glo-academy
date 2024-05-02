@@ -2,6 +2,7 @@
 // Lesson10
 const booksListContainer = document.querySelectorAll(".books");
 const booksList = document.querySelectorAll(".book");
+const ad = document.querySelector(".adv");
 console.log(booksListContainer, booksList);
 
 const firstBookElement = booksList[1];
@@ -22,5 +23,10 @@ const fixTitleName = function () {
   thirdBookTitle.textContent = "Книга 3. this и Прототипы Объектов";
 };
 
+const removeAd = function () {
+  ad.remove();
+};
+
 orderBooksList();
 fixTitleName();
+removeAd();
