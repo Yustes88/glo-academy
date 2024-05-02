@@ -17,4 +17,10 @@ const orderBooksList = function () {
   forthBookElement.before(thirdBookElement);
 };
 
+const fixTitleName = function () {
+  const thirdBookTitle = thirdBookElement.querySelector("h2 > a");
+  thirdBookTitle.textContent = "Книга 3. this и Прототипы Объектов";
+};
+
 orderBooksList();
+fixTitleName();
