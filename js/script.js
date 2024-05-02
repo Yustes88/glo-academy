@@ -28,39 +28,27 @@ const removeAd = function () {
 
 const orderSecondBooksChapters = function () {
   const bookChapters = secondBookElement.querySelectorAll("ul > li");
-  const chapterOne = bookChapters[3];
-  const chaptertwo = bookChapters[6];
-  const chapterThree = bookChapters[8];
-  const chapterFour = bookChapters[4];
-  const chapterB = bookChapters[9];
-  const chapterC = bookChapters[2];
 
-  chapterOne.after(chaptertwo);
-  chapterFour.before(chapterThree);
-  chapterB.after(chapterC);
+  bookChapters[3].after(bookChapters[6]);
+  bookChapters[4].before(bookChapters[8]);
+  bookChapters[9].after(bookChapters[2]);
 };
 
 const orderFifthBooksChapter = function () {
   const bookChapters = fifthBookElement.querySelectorAll("ul > li");
-  const chapterOne = bookChapters[9];
-  const chapterTwo = bookChapters[3];
-  const chapterThree = bookChapters[4];
-  const chapterFour = bookChapters[2];
-  const chapterA = bookChapters[5];
-  const chapterB = bookChapters[8];
 
-  chapterThree.after(chapterFour);
-  chapterTwo.before(chapterOne);
-  chapterB.before(chapterA);
+  bookChapters[4].after(bookChapters[2]);
+  bookChapters[3].before(bookChapters[9]);
+  bookChapters[8].before(bookChapters[5]);
 };
 
 const addChapter = function () {
   const bookChapters = sixthBookElement.querySelectorAll("ul > li");
-  const chapterSeven = bookChapters[8];
   const chapterEight = document.createElement("li");
+
   chapterEight.textContent = "Глава 8: За пределами ES6";
 
-  chapterSeven.after(chapterEight);
+  bookChapters[8].after(chapterEight);
 };
 
 orderBooksList();
