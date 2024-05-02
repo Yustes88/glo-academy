@@ -21,7 +21,6 @@ const appData = {
     do {
       title = prompt('Как называется ваш проект?')
     } while (!title || appData.isNumber(title))
-
     appData.title = title
       .trim()
       .split('')
