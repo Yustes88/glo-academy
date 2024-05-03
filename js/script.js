@@ -1,5 +1,6 @@
 "use strict";
 // Lesson10
+const bodyElement = document.querySelector("body");
 const booksListContainer = document.querySelectorAll(".books");
 const booksList = document.querySelectorAll(".book");
 const ad = document.querySelector(".adv");
@@ -20,6 +21,11 @@ const orderBooksList = function () {
 const fixTitleName = function () {
   const thirdBookTitle = thirdBookElement.querySelector("h2 > a");
   thirdBookTitle.textContent = "Книга 3. this и Прототипы Объектов";
+};
+
+const addImage = function () {
+  ad.style.backgroundImage = "url(./image/adv.jpg)";
+  bodyElement.style.backgroundImage = "url(./image/open_book.jpg)";
 };
 
 const removeAd = function () {
@@ -53,6 +59,7 @@ const addChapter = function () {
 
 orderBooksList();
 fixTitleName();
+addImage();
 removeAd();
 orderSecondBooksChapters();
 orderFifthBooksChapter();
