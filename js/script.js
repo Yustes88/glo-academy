@@ -10,7 +10,6 @@ const itemsPercent = document.querySelectorAll('.other-items.percent')
 const itemsNumber = document.querySelectorAll('.other-items.number')
 
 const inputRange = document.querySelector('.rollback input[type="range"]')
-
 const rangeValue = document.querySelector('.rollback span')
 
 const totalInput = document.getElementsByClassName('total-input')[0]
@@ -26,7 +25,7 @@ const appData = {
   screenPrice: 0,
   screens: [],
   adaptive: true,
-  rollback: 10,
+  rollback: 0,
   fullPrice: 0,
   servicePricesPercent: 0,
   servicePricesNumber: 0,
@@ -36,6 +35,14 @@ const appData = {
   allServicePrices: 0,
   rollbackMessage: '',
   invalid: false,
+  getRangeInput: function () {
+    inputRange.addEventListener('input', function () {
+      const rangeInputValue = inputRange.value
+
+      rangeValue.textContent = rangeInputValue + '%'
+      appData.rollback = parseInt(rangeInputValue)
+    })
+  },
   checkInputs: function () {
     const inputs = document.querySelectorAll(
       '.screen > .main-controls__input > input[type=text]',
@@ -47,7 +54,6 @@ const appData = {
         appData.invalid = true
       }
     })
-    console.log(inputs)
   },
   getRollbackMessage: function () {
     let message = ''
@@ -63,9 +69,9 @@ const appData = {
     appData.rollbackMessage = message
   },
   getServicePercentPrices: function () {
-    appData.servicePercentPrice = Math.ceil(
-      appData.fullPrice - appData.fullPrice * (appData.rollback / 100),
-    )
+    // appData.servicePercentPrice = Math.ceil(
+    //   appData.fullPrice - appData.fullPrice * (appData.rollback / 100),
+    // )
   },
   showResult: function () {
     totalInput.value = appData.screenPrice
@@ -151,6 +157,10 @@ const appData = {
       Number(appData.screenPrice) +
       appData.servicePricesPercent +
       appData.servicePricesNumber
+
+    appData.servicePercentPrice = Math.ceil(
+      appData.fullPrice - appData.fullPrice * (appData.rollback / 100),
+    )
   },
   start: function () {
     appData.addScreens()
@@ -162,14 +172,17 @@ const appData = {
     // appData.logger();
   },
   init: function () {
+    appData.getRangeInput()
     appData.addTitle()
+    console.log(appData.rollback)
 
     startBtn.addEventListener('click', function () {
-      appData.checkInputs()
-      if (!appData.invalid) {
-        console.log('click when invalid is true')
-        appData.start()
-      }
+      appData.start()
+      console.log('start')
+      // appData.checkInputs()
+      // if (!appData.invalid) {
+      //   appData.start()
+      // }
     })
 
     screenBtn.addEventListener('click', appData.addScreenBlock)
