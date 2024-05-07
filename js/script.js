@@ -151,8 +151,6 @@ const appData = {
     appData.screensTotalNumber = appData.screens.reduce((total, item) => {
       return total + item.count;
     }, 0);
-
-    console.log(appData.screens);
   },
   start: function () {
     appData.addScreens();
@@ -163,7 +161,6 @@ const appData = {
   init: function () {
     appData.getRangeInput();
     appData.addTitle();
-    console.log(appData.rollback);
 
     startBtn.addEventListener("click", function () {
       appData.checkInputs();
