@@ -159,9 +159,6 @@ const appData = {
     appData.addServices();
     appData.addPrices();
     appData.showResult();
-    // appData.getServicePercentPrices();
-    // appData.getRollbackMessage();
-    // appData.logger();
   },
   init: function () {
     appData.getRangeInput();
@@ -169,12 +166,11 @@ const appData = {
     console.log(appData.rollback);
 
     startBtn.addEventListener("click", function () {
-      appData.start();
-      console.log("start");
-      // appData.checkInputs()
-      // if (!appData.invalid) {
-      //   appData.start()
-      // }
+      appData.checkInputs();
+      if (!appData.invalid) {
+        appData.screens = [];
+        appData.start();
+      }
     });
 
     screenBtn.addEventListener("click", appData.addScreenBlock);
@@ -182,16 +178,3 @@ const appData = {
 };
 
 appData.init();
-
-// console.log(
-//   mainTitle,
-//   startBtn,
-//   resetBtn,
-//   screenBtn,
-//   itemsPercent,
-//   itemsNumber,
-//   inputRange,
-//   rangeValue,
-//   totalInput,
-//   screenBlocks
-// );
